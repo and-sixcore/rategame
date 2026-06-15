@@ -11,9 +11,25 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
     <nav className="flex flex-col gap-7 text-sm" aria-label="Handbook sections">
       {handbookNav.map((section) => (
         <div key={section.title}>
-          <p className="mb-2 text-xs font-medium text-muted-soft">
-            {section.title}
-          </p>
+          {section.href ? (
+            <Link
+              href={section.href}
+              onClick={onNavigate}
+              aria-current={pathname === section.href ? "page" : undefined}
+              className={[
+                "mb-2 block text-xs font-medium transition-colors",
+                pathname === section.href
+                  ? "text-fg"
+                  : "text-muted-soft hover:text-fg",
+              ].join(" ")}
+            >
+              {section.title}
+            </Link>
+          ) : (
+            <p className="mb-2 text-xs font-medium text-muted-soft">
+              {section.title}
+            </p>
+          )}
           <ul className="flex flex-col gap-0.5">
             {section.items.map((item) => {
               const active = pathname === item.href;

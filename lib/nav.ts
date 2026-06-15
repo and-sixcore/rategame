@@ -7,6 +7,8 @@ export interface NavItem {
 
 export interface NavSection {
   title: string;
+  /** Optional landing page for the section — makes the title clickable. */
+  href?: string;
   items: NavItem[];
 }
 
@@ -28,6 +30,7 @@ export const handbookNav: NavSection[] = [
   },
   {
     title: "Recipes",
+    href: "/handbook/recipes",
     items: [
       { label: "Achievements", href: "/handbook/recipes/achievements" },
       { label: "Flags", href: "/handbook/recipes/flags" },

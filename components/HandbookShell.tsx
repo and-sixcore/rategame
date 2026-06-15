@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { TopBar } from "./TopBar";
 import { Sidebar } from "./Sidebar";
 import { PageNav } from "./PageNav";
+import { TableOfContents } from "./TableOfContents";
 
 export function HandbookShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -28,6 +29,13 @@ export function HandbookShell({ children }: { children: ReactNode }) {
             </div>
           </div>
         </main>
+
+        {/* On-this-page TOC */}
+        <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-56 shrink-0 overflow-y-auto py-10 pl-8 xl:block">
+          <div key={pathname}>
+            <TableOfContents />
+          </div>
+        </aside>
       </div>
     </>
   );

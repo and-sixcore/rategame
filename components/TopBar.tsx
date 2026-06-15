@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "./Wordmark";
 import { MobileMenu } from "./MobileMenu";
+import { Search } from "./Search";
 
 const sections = [
   { label: "Handbook", href: "/handbook" },
@@ -21,6 +22,9 @@ export function TopBar() {
 
         {/* Desktop navigation */}
         <nav className="ml-auto hidden items-center gap-1 text-sm lg:flex">
+          <div className="mr-2">
+            <Search />
+          </div>
           {sections.map((s) => {
             const active =
               s.href === "/handbook"
@@ -58,8 +62,9 @@ export function TopBar() {
           </a>
         </nav>
 
-        {/* Mobile menu */}
-        <div className="ml-auto lg:hidden">
+        {/* Mobile: search + menu */}
+        <div className="ml-auto flex items-center gap-1 lg:hidden">
+          <Search />
           <MobileMenu />
         </div>
       </div>

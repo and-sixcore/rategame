@@ -1,0 +1,89 @@
+[
+  {
+    "title": "Design Handbook",
+    "href": "/handbook",
+    "headings": [
+      {
+        "text": "One project, many files",
+        "slug": "one-project-many-files"
+      }
+    ],
+    "body": "Design Handbook This is how design works at RateGame. It walks through the process: where work happens, how it moves from exploration to dev handoff, the tools we lean on, and a couple of hands-on recipes for the fiddly bits. RateGame is a community for rating the best games in sports , across the NBA, NFL, MLB, NHL, college, and international soccer. The product has been through several iterations of redesign , and it'll go through more. That's the point. But the core brand, the colors, and a handful of key elements are here to stay , and that stable spine is what lets everything else move fast. One project, many files Every design lives in a single RateGame Figma project . Rather than one giant file (which is exactly what we outgrew, see Archive), the work is split into purpose-built files: a place to explore, a place to review, a place to hand off, libraries for the pieces we reuse, and a few support files. If you're new here, read these in order: - Philosophy : how we work. Move fast, ship, iterate. - Files : the map of every file and what it's for. - Workflow : how a feature travels from idea to dev. - Tools : what we use alongside Figma. - Recipes : the achievements and flags workflows, step by step. Explore in Workboard , critique in Review , then hand the clean version to dev in App or Web . Build on top of the Foundations library. Don't over-engineer the system. Ship and polish."
+  },
+  {
+    "title": "Philosophy",
+    "href": "/handbook/philosophy",
+    "headings": [
+      {
+        "text": "Good enough, on purpose",
+        "slug": "good-enough-on-purpose"
+      },
+      {
+        "text": "The design engineer",
+        "slug": "the-design-engineer"
+      }
+    ],
+    "body": "Philosophy Move fast and iterate. That's the whole thing. We've spent real time on the design system, tokens, and foundations, enough that building new screens is quick and consistent. But day to day, week to week, we're not polishing the system. We design, ideate, prototype, and ship. Time isn't sunk into complex design-system optimization. It's spent getting product in front of people. Good enough, on purpose Quality is staged. Each stage has a target, and chasing more than the target is wasted time at that point in the process: Get the idea legible and roughly right. It doesn't need to be pixel-perfect to earn useful feedback. It needs to communicate. Bring it to the weekly Review. After feedback, clean it up and hand it off. Organized, annotated, with dev notes where they help. Close enough that engineering can build confidently. The last 5% happens in collaboration. You follow up, you communicate, and as a design engineer you get into the codebase and make the visual edits yourself. The design engineer Design doesn't stop at handoff. Once a feature is developed , you get your hands dirty: open the codebase and make the necessary visual edits there . The fastest path from 95% to 100% is usually a few commits, not another Figma round-trip. A stable brand and a published Foundations library are what make shipping fast safe. The spine doesn't move, so the surface can."
+  },
+  {
+    "title": "Workflow",
+    "href": "/handbook/workflow",
+    "headings": [],
+    "body": "Workflow How a feature moves from a blank frame to something engineering can build. Take a new games screen as the running example. Build the new games screen in Workboard , the no judgement worktable. Try things, prototype, make a mess. Get it to about 80%: clear enough to react to. Drop it into Review , the weekly board where each page is labeled by date. The team reviews the week's work together and leaves feedback. Take the feedback back to Workboard and revise. This loop can run more than once: exploration and critique until the design is right. Produce the cleaned-up, final version in App : organized, ready for dev. Use annotations and add dev notes where they help. For web deliverables, the same thing happens in Web . After it's built, follow up with the devs and get the last 5% right, often by making the visual edits directly in the codebase. See Philosophy. Workboard is explore. Review is critique (dated, weekly). App and Web are the clean, annotated handoff. When a Workboard passes about 100 pages it gets archived and the next one is started. See Ideaboard and the numbering convention."
+  },
+  {
+    "title": "Tools",
+    "href": "/handbook/tools",
+    "headings": [
+      {
+        "text": "PostHog, product analytics",
+        "slug": "posthog-product-analytics"
+      },
+      {
+        "text": "FigJam, whiteboard and diagrams",
+        "slug": "figjam-whiteboard-and-diagrams"
+      },
+      {
+        "text": "Gemini, image generation",
+        "slug": "gemini-image-generation"
+      }
+    ],
+    "body": "Tools Figma is home base, but a few other tools do specific jobs. PostHog, product analytics We use PostHog for product analytics and data. When you need to understand or track how people move through a certain flow, that's where you look. The Analytics Figma file is a log of older PostHog analytics. It's legacy and no longer in active use. For live data, go to PostHog directly. FigJam, whiteboard and diagrams For whiteboarding and diagrams (flows, maps, loose thinking) reach for FigJam . Gemini, image generation Gemini generates the source images for achievements. From there they get brought into the component properly. See the Achievements recipe."
+  },
+  {
+    "title": "Recipes",
+    "href": "/handbook/recipes",
+    "headings": [],
+    "body": "Recipes Step-by-step guides for the fiddly, repeatable bits of designing RateGame. Each recipe captures the non-obvious details so the result stays consistent every time. - Achievements — from a Gemini-generated image to a proper in-app variant (1:1, light file, dark variant). - Flags — keeping every flag consistent: circles with the wavy frame, and the fallback when the component won't cooperate."
+  },
+  {
+    "title": "Recipe – Achievements",
+    "href": "/handbook/recipes/achievements",
+    "headings": [
+      {
+        "text": "The image must be right",
+        "slug": "the-image-must-be-right"
+      },
+      {
+        "text": "Making the dark variant",
+        "slug": "making-the-dark-variant"
+      }
+    ],
+    "body": "Recipe – Achievements How a new achievement goes from an idea to a usable in-app asset. Start in Gemini and generate the achievement artwork as an image. Bring the image into the Achievements component as a proper variant , so it can be used in the app like every other achievement. This is the important part: it has to live in the component, not float as a loose image. Three things matter, every time (see below). The image must be right - 1:1 aspect ratio. Square, always. - Small file size. Keep it light. Don't ship a huge image. - A dark variant. Every achievement needs one. Making the dark variant The dark variant is produced from the same image by pushing three adjustments to their extremes: - Contrast to max - Saturation to zero - Exposure to zero That combination gives the consistent dark-mode treatment used across all achievements."
+  },
+  {
+    "title": "Recipe – Flags",
+    "href": "/handbook/recipes/flags",
+    "headings": [
+      {
+        "text": "The standard",
+        "slug": "the-standard"
+      },
+      {
+        "text": "When the component won't cooperate",
+        "slug": "when-the-component-wont-cooperate"
+      }
+    ],
+    "body": "Recipe – Flags All flags in RateGame are circles , used for the World Cup and across the app. They all share the same look, so consistency is the whole game. The library lives in the Flags file. The standard - Every flag is a circle . - Make the size a little smaller than you'd expect. That's the RateGame sizing. - They all carry the same wavy flag-frame effect , which is what makes the set feel like one family. When the component won't cooperate If the flag components aren't behaving, don't fight them. Find the flag on Google , then layer it on top of the wavy flag-frame effect , the same frame all the others use. The result stays perfectly consistent with the rest of the set."
+  }
+]

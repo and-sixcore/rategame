@@ -73,9 +73,9 @@ body {
   color: #06281a;
 }
 
-/* Consistent, visible focus ring */
+/* Consistent, visible focus ring (neutral, not green) */
 :focus-visible {
-  outline: 2px solid var(--color-green-ink);
+  outline: 2px solid rgba(255, 255, 255, 0.5);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -112,11 +112,13 @@ body {
   font-size: 1.6rem;
   margin-top: 2.2em;
   padding-top: 0.2em;
+  scroll-margin-top: 5rem;
 }
 
 .prose h3 {
   font-size: 1.2rem;
   margin-top: 1.8em;
+  scroll-margin-top: 5rem;
 }
 
 .prose p,

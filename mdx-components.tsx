@@ -2,7 +2,6 @@ import type { MDXComponents } from "mdx/types";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Callout } from "@/components/Callout";
 import { Steps, Step } from "@/components/Steps";
-import { Pill } from "@/components/Pill";
 import { AnimatedText } from "@/components/AnimatedText";
 
 // Wraps every MDX page in editorial prose styling + a readable measure.
@@ -22,7 +21,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Callout,
     Steps,
     Step,
-    Pill,
     ...components,
   };
 }

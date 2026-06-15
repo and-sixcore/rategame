@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    // String form so Turbopack can serialize the plugin. Adds id attributes
+    // to headings so the on-page TOC can link to them.
+    rehypePlugins: [["rehype-slug"]],
+  },
 });
 
 export default withMDX(nextConfig);
