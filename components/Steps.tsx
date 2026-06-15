@@ -11,19 +11,19 @@ import { Children, ReactNode, isValidElement } from "react";
 export function Steps({ children }: { children: ReactNode }) {
   const items = Children.toArray(children).filter(isValidElement);
   return (
-    <ol className="my-7 flex flex-col gap-0">
+    <ol className="my-7 flex list-none! flex-col gap-0 pl-0!">
       {items.map((child, i) => (
-        <li key={i} className="relative flex gap-4 pb-7 last:pb-0">
+        <li key={i} className="relative flex gap-4 pb-7 pl-0! mt-0! last:pb-0">
           {/* connector line */}
           {i < items.length - 1 && (
             <span
               aria-hidden
-              className="absolute left-[15px] top-9 bottom-1 w-px bg-border"
+              className="absolute left-4 top-9 bottom-1 w-px -translate-x-1/2 bg-border"
             />
           )}
           <span
             aria-hidden
-            className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border-strong bg-surface text-sm font-semibold text-fg"
+            className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border-strong bg-surface text-sm font-semibold leading-none text-fg"
           >
             {i + 1}
           </span>

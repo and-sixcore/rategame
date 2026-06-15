@@ -33,10 +33,6 @@ export const handbookNav: NavSection[] = [
       { label: "Flags", href: "/handbook/recipes/flags" },
     ],
   },
-  {
-    title: "Reference",
-    items: [{ label: "Resources", href: "/handbook/resources" }],
-  },
 ];
 
 // Flat list — handy for "next/prev" and active-state checks.

@@ -18,9 +18,12 @@ export function PageNav() {
   return (
     <nav
       aria-label="Page navigation"
-      className="mt-16 grid grid-cols-2 gap-3 border-t border-border pt-8"
+      className={[
+        "mt-16 grid gap-3 border-t border-border pt-8",
+        prev && next ? "grid-cols-2" : "grid-cols-1",
+      ].join(" ")}
     >
-      {prev ? (
+      {prev && (
         <Link
           href={prev.href}
           className="group flex flex-col rounded-card border border-border bg-surface px-4 py-3.5 transition-colors hover:border-border-strong sm:px-5 sm:py-4"
@@ -39,8 +42,6 @@ export function PageNav() {
           </span>
           <span className="mt-1 font-medium text-fg">{prev.label}</span>
         </Link>
-      ) : (
-        <span />
       )}
 
       {next && (

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Sidebar } from "./Sidebar";
+import { Wordmark } from "./Wordmark";
 
 const sections = [
   { label: "Handbook", href: "/handbook" },
@@ -37,7 +38,7 @@ export function MobileMenu() {
   const drawer = (
     <div className="fixed inset-0 z-50 flex flex-col bg-bg">
       <div className="flex h-14 shrink-0 items-center justify-between border-b border-border px-4 sm:px-6">
-        <span className="text-sm font-semibold tracking-tight text-fg">Menu</span>
+        <Wordmark href="/" />
         <button
           type="button"
           aria-label="Close menu"
@@ -76,9 +77,7 @@ export function MobileMenu() {
                 ].join(" ")}
               >
                 {s.label}
-                {active ? (
-                  <span className="h-2 w-2 rounded-full bg-green" aria-hidden />
-                ) : (
+                {!active && (
                   <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden className="text-muted-soft">
                     <path
                       d="M2.5 6h7M6.5 3l3 3-3 3"

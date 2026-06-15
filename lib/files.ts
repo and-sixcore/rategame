@@ -1,5 +1,5 @@
 // Single source of truth for the RateGame Figma files.
-// Used by the "System" (files) page and the "Resources" page.
+// Used by the "Files" page (icon + name + description, grouped).
 
 export type FileGroup =
   | "Work files"
@@ -10,13 +10,13 @@ export type FileGroup =
 export interface FigmaFile {
   /** Display name */
   name: string;
-  /** Short role label (shown as the subtitle on the Resources page) */
+  /** Short role label */
   role: string;
   /** A simple one-line description of what the file is for */
   description: string;
   /** Figma URL */
   href: string;
-  /** Grouping used on both the Files and Resources pages */
+  /** Grouping used on the Files page */
   group: FileGroup;
 }
 

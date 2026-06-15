@@ -23,7 +23,9 @@ export function AnimatedText({
   return (
     <Calligraph
       as={as}
-      className={className}
+      // items-baseline keeps the split character spans on the text baseline,
+      // so punctuation (e.g. the colon) doesn't float above the letters.
+      className={["items-baseline", className].filter(Boolean).join(" ")}
       initial
       variant="text"
       animation="smooth"
