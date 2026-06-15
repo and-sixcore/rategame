@@ -1,0 +1,42 @@
+export const metadata = {
+  title: "Achievements",
+  description:
+    "From a Gemini-generated image to a proper in-app achievement variant.",
+};
+
+# Recipe: Achievements
+
+How a new achievement goes from an idea to a usable in-app asset.
+
+<Steps>
+  <Step title="Generate the image">
+    Start in **Gemini** and generate the achievement artwork as an image.
+  </Step>
+  <Step title="Add it to the component">
+    Bring the image into the **Achievements component** as a proper **variant**, so it
+    can be used in the app like every other achievement. This is the important part: it
+    has to live in the component, not float as a loose image.
+  </Step>
+  <Step title="Prep the image correctly">
+    Three things matter, every time (see below).
+  </Step>
+</Steps>
+
+## The image must be right
+
+<Callout type="warning" title="Non-negotiables for every achievement image">
+  - **1:1 aspect ratio.** Square, always.
+  - **Small file size.** Keep it light. Don't ship a huge image.
+  - **A dark variant.** Every achievement needs one.
+</Callout>
+
+### Making the dark variant
+
+The dark variant is produced from the same image by pushing three adjustments to their
+extremes:
+
+- **Contrast to max**
+- **Saturation to zero**
+- **Exposure to zero**
+
+That combination gives the consistent dark-mode treatment used across all achievements.
