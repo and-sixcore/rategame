@@ -12,23 +12,78 @@
   --color-green-ink: #1aff97; /* bright green reads cleanly as text/links on dark */
   --color-green-soft: #112a1f; /* dark green-tinted surface (active nav, tips) */
 
-  /* Neutrals — dark */
-  --color-bg: #0a0b0d;
-  --color-fg: #f4f5f6;
+  /* ---- RateGame product design system (design.md — source of truth) ----
+     Monochrome canvas, one accent per context, accent = rating state. */
+
+  /* Canvas + surfaces (near-black, stepped) */
+  --color-bg: #0a0a0a; /* page / app background — near-black */
+  --color-surface-1: #1a1a1a; /* default card */
+  --color-surface-2: #262626; /* raised / inner panel / chip / code */
+  --color-surface-3: #333333; /* hover / pressed / selected chip */
+  --color-border: #262626; /* hairline borders */
+
+  /* Text */
+  --color-fg: #f2f2f2; /* primary text */
+  --color-fg-muted: #d9d9d9; /* secondary text */
+  --color-fg-subtle: #808080; /* meta / timestamps / captions */
+
+  /* Semaphore — rating state only (never decoration) */
+  --color-rg-green: #1aff97; /* value >= 7.0  → good */
+  --color-rg-yellow: #ffe81a; /* value 4.0–6.9 → mixed */
+  --color-rg-red: #ff6b4d; /* value < 4.0   → poor */
+  --color-rg-green-dim: rgba(26, 255, 151, 0.12);
+  --color-rg-yellow-dim: rgba(255, 232, 26, 0.12);
+  --color-rg-red-dim: rgba(255, 107, 77, 0.12);
+
+  /* ---- Handbook neutrals (kept; the docs site renders on these) ---- */
   --color-surface: #14161a;
-  --color-surface-2: #1d2025;
-  --color-border: #272a30;
   --color-border-strong: #3a3e46;
   --color-muted: #9aa0a8;
   --color-muted-soft: #686d76;
 
-  /* Fonts (wired in app/layout.tsx via next/font) */
+  /* Fonts (wired in app/layout.tsx via next/font) — core font is SN Pro */
   --font-sans: var(--font-sn-pro), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Radii */
-  --radius-card: 14px;
+  /* Type scale (design.md) — applied to SN Pro. Weights applied per-use:
+     Display 400 · H1 500 · H2/H3 600 · Body/Caption 400 · Label 500. */
+  --text-display: 64px;
+  --text-display--line-height: 76px;
+  --text-h1: 44px;
+  --text-h1--line-height: 56px;
+  --text-h2: 32px;
+  --text-h2--line-height: 40px;
+  --text-h3: 24px;
+  --text-h3--line-height: 30px;
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: 24px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 18px;
+  --text-label: 14px;
+  --text-label--line-height: 18px;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-footnote: 10px;
+  --text-footnote--line-height: 12px;
+
+  /* Spacing: design.md's 8px grid maps onto Tailwind's defaults — do NOT
+     redefine, or handbook layouts shift. Mapping (px → util step):
+     4→1 · 8→2 · 12→3 · 16→4 · 24→6 · 32→8 · 40→10 · 48→12 · 64→16 · 96→24 */
+
+  /* Radii (design.md). lg/xl routed to the 2xl/3xl slots so the handbook's
+     existing rounded-lg / rounded-xl usages stay untouched. */
+  --radius-sm: 8px; /* chips / small controls */
+  --radius-md: 12px; /* buttons / inputs */
+  --radius-2xl: 16px; /* cards (design.md radius-lg) */
+  --radius-3xl: 20px; /* large media cards (design.md radius-xl) */
+  --radius-card: 14px; /* handbook card radius (kept) */
   --radius-pill: 999px;
+
+  /* Elevation — dark mode: faint light glow, not heavy shadow */
+  --shadow-1: 0 4px 16px rgba(255, 255, 255, 0.04); /* resting card */
+  --shadow-2: 0 8px 16px rgba(255, 255, 255, 0.1); /* hover */
 }
 
 :root {
@@ -78,6 +133,16 @@ body {
   outline: 2px solid rgba(255, 255, 255, 0.5);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Tailwind v4 ships buttons with the default cursor — restore pointer for
+   every interactive control. Unlayered so it wins over preflight. */
+button:not(:disabled),
+[role="button"],
+a[href],
+label[for],
+summary {
+  cursor: pointer;
 }
 
 /* ----------------------------------------------------------------------------
@@ -204,4 +269,46 @@ body {
 .prose figure,
 .prose img {
   margin-top: 1.5em;
+}
+
+/* Fenced code blocks (markdown spec rendering) */
+.prose pre {
+  margin-top: 1.2em;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface-2);
+  padding: 1em 1.1em;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+/* GFM tables */
+.prose table {
+  display: block;
+  width: 100%;
+  margin-top: 1.3em;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.93em;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--color-border);
+  padding: 0.5em 0.75em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--color-surface-2);
+  font-weight: 600;
+  color: var(--color-fg);
 }
