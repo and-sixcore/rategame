@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/ComingSoon";
+import { TopBar } from "@/components/TopBar";
+import { PlaygroundClient } from "@/components/playground/PlaygroundClient";
 
 export const metadata: Metadata = {
   title: "Playground",
-  description: "The AI design workboard, coming soon.",
+  description:
+    "Click through living, mock-data prototypes of the RateGame web and mobile apps inside real device frames.",
 };
 
 export default function PlaygroundPage() {
   return (
-    <ComingSoon eyebrow="Coming soon" title="Workboard">
-      A space to build and explore components with AI, the digital extension of the
-      Figma worktable. It's on the roadmap. For now, exploration happens in the Workboard
-      Figma file.
-    </ComingSoon>
+    <>
+      <TopBar />
+      <main className="mx-auto w-full max-w-[1320px] flex-1 px-6 pb-24">
+        <PlaygroundClient />
+      </main>
+    </>
   );
 }

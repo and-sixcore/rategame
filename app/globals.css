@@ -312,3 +312,55 @@ summary {
   font-weight: 600;
   color: var(--color-fg);
 }
+
+/* ----------------------------------------------------------------------------
+   Playground — hide scrollbars inside the device / preview screens so the
+   reproduced apps feel native (no chrome scrollbar bleeding into the frame).
+---------------------------------------------------------------------------- */
+.pg-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pg-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* Hover lift for clickable playground cards/rows (color-agnostic). */
+.pg-hover {
+  transition: filter 0.14s ease, transform 0.14s ease;
+}
+.pg-hover:hover {
+  filter: brightness(1.16);
+}
+
+/* Skeleton pulse for the web nav-shell placeholder content. */
+@keyframes pg-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.pg-skel {
+  animation: pg-pulse 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pg-skel { animation: none; }
+}
+
+/* Stack-push transition for the in-app detail screens */
+@keyframes pg-slide {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-scroll [style*="pg-slide"] {
+    animation: none !important;
+  }
+}

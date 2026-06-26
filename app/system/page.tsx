@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TopBar } from "@/components/TopBar";
+import { sections } from "@/lib/sections";
 
 export const metadata: Metadata = {
   title: "Design System",
@@ -72,21 +73,32 @@ export default function SystemPage() {
             </span>
           </Link>
 
-          {/* Sections — placeholder */}
-          <div className="flex flex-col rounded-card border border-dashed border-border bg-surface/40 p-6">
+          {/* Sections */}
+          <Link
+            href="/system/sections"
+            className="group flex flex-col rounded-card border border-border bg-surface p-6 transition-colors hover:border-border-strong"
+          >
             <span className="flex items-center justify-between">
-              <span className="text-base font-semibold tracking-tight text-muted">
-                Sections
-              </span>
-              <span className="rounded-pill border border-border-strong px-2 py-0.5 text-[11px] font-medium text-muted-soft">
-                Coming soon
+              <span className="text-base font-semibold tracking-tight">Sections</span>
+              <span className="text-muted-soft transition-colors group-hover:text-fg">
+                <Arrow />
               </span>
             </span>
-            <span className="mt-2 text-sm leading-relaxed text-muted-soft">
-              Components, grouped into sections. Empty for now — this is where
-              they&apos;ll live as you build them, session by session.
+            <span className="mt-2 text-sm leading-relaxed text-muted">
+              The component library — {sections.length} components from the web and mobile apps, atomic to
+              advanced. Build them one at a time, on-system.
             </span>
-          </div>
+            <span className="mt-6 flex items-center gap-2" aria-hidden>
+              {["Atomic", "Composite", "Advanced"].map((t) => (
+                <span
+                  key={t}
+                  className="rounded-pill bg-surface-2 px-2.5 py-1 text-[11px] font-semibold text-muted"
+                >
+                  {t}
+                </span>
+              ))}
+            </span>
+          </Link>
         </section>
       </main>
 
