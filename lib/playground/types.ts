@@ -87,3 +87,25 @@ export interface CommunityPost {
   likes: number;
   comments: number;
 }
+
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  /** One or two sentence dek shown under the title. */
+  excerpt: string;
+  /** Sentence-case kicker, e.g. "NBA · Match report". No all-caps, no em dashes. */
+  kicker: string;
+  /** Optional league, used to seed the gradient cover + label the kicker. */
+  league?: League;
+  author: User;
+  /** Display date, e.g. "Jun 24, 2026". */
+  date: string;
+  readMins: number;
+  /** Cover image path under /public. When omitted the cover renders a gradient. */
+  image?: string;
+  likes: number;
+  comments: number;
+  /** Body paragraphs for the read view. */
+  body: string[];
+}

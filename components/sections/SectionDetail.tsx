@@ -2,6 +2,7 @@
 
 import { IoArrowBack, IoLockClosed } from "react-icons/io5";
 import { getSection } from "@/lib/sections";
+import { previewRegistry } from "./previews/registry";
 
 function Meta({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -26,6 +27,8 @@ export function SectionDetail({ sectionId, onBack }: { sectionId: string; onBack
   }
 
   const sourceLabel = s.source === "both" ? "Web + Mobile" : s.source === "web" ? "Web" : "Mobile";
+  const Preview = previewRegistry[s.id];
+  const isBuilt = s.status === "built";
 
   return (
     <div className="page-rise py-10">
@@ -35,7 +38,15 @@ export function SectionDetail({ sectionId, onBack }: { sectionId: string; onBack
 
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <h1 className="text-3xl font-semibold tracking-tight text-fg">{s.name}</h1>
-        <span className="rounded-pill bg-surface-2 px-2.5 py-1 text-[11px] font-semibold text-muted">Planned</span>
+        <span
+          className={
+            isBuilt
+              ? "rounded-pill bg-surface-2 px-2.5 py-1 text-[11px] font-semibold text-green"
+              : "rounded-pill bg-surface-2 px-2.5 py-1 text-[11px] font-semibold text-muted"
+          }
+        >
+          {isBuilt ? "Built" : "Planned"}
+        </span>
       </div>
       <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">{s.description}</p>
 
@@ -93,15 +104,24 @@ export function SectionDetail({ sectionId, onBack }: { sectionId: string; onBack
         </p>
       </div>
 
-      {/* Build placeholder */}
-      <div className="mt-4 grid max-w-[760px] place-items-center rounded-2xl border border-dashed border-border-strong bg-bg py-14 text-center">
-        <div>
-          <div className="text-sm font-medium text-fg-subtle">Not built yet</div>
-          <div className="mt-1 text-[13px] text-muted-soft">
-            When this is built (on its own or from a flow), its preview + edit lands here.
+      {/* Build preview — live for built sections, placeholder otherwise */}
+      {Preview ? (
+        <div className="mt-4 max-w-[760px]">
+          <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-soft">Preview</div>
+          <div className="rounded-2xl border border-border bg-surface-1 p-8">
+            <Preview />
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="mt-4 grid max-w-[760px] place-items-center rounded-2xl border border-dashed border-border-strong bg-bg py-14 text-center">
+          <div>
+            <div className="text-sm font-medium text-fg-subtle">Not built yet</div>
+            <div className="mt-1 text-[13px] text-muted-soft">
+              When this is built (on its own or from a flow), its preview + edit lands here.
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

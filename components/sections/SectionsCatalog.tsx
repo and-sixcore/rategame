@@ -38,7 +38,15 @@ function Row({ section, onOpen }: { section: Section; onOpen: (id: string) => vo
         </div>
         <p className="mt-1 text-[13px] leading-snug text-muted">{section.description}</p>
       </div>
-      <span className="mt-1 shrink-0 text-[11px] font-medium text-muted-soft">Planned</span>
+      <span
+        className={
+          section.status === "built"
+            ? "mt-1 shrink-0 text-[11px] font-medium text-green"
+            : "mt-1 shrink-0 text-[11px] font-medium text-muted-soft"
+        }
+      >
+        {section.status === "built" ? "Built" : "Planned"}
+      </span>
       <IoArrowForward className="mt-1 shrink-0 text-muted-soft transition-transform group-hover:translate-x-0.5" />
     </button>
   );

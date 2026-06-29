@@ -5,6 +5,7 @@ import { app } from "./appTheme";
 import { ratings } from "./mockData";
 import { Avatar } from "@/components/playground/ui/Avatar";
 import { RatingCircle } from "@/components/playground/ui/RatingCircle";
+import { ArticlesFlow } from "@/components/playground/articles/ArticlesFlow";
 
 /**
  * The playground is a prototype zone. A "flow" is a piece of UI (a flow, a
@@ -68,6 +69,8 @@ function SampleRatings({ target }: { target: PlaygroundTarget }) {
 /* --------------------------------------------------------------- registry -- */
 export const flows: Flow[] = [
   { id: "empty", label: "Empty shell", group: "—", platforms: ["mobile", "web"], render: () => null },
+  { id: "articles-grid", label: "Articles · Var A (grid)", group: "Articles", platforms: ["mobile", "web"], render: (c) => <ArticlesFlow target={c.target} variant="grid" /> },
+  { id: "articles-feed", label: "Articles · Var B (feed)", group: "Articles", platforms: ["mobile", "web"], render: (c) => <ArticlesFlow target={c.target} variant="feed" /> },
   { id: "sample-ratings", label: "Sample · ratings", group: "Samples", platforms: ["mobile", "web"], render: (c) => <SampleRatings target={c.target} /> },
 ];
 
