@@ -22,6 +22,7 @@ export type SectionCategory =
   | "Games"
   | "Ratings"
   | "Profile"
+  | "Players"
   | "Community & Posts"
   | "Articles"
   | "Navigation"
@@ -48,6 +49,7 @@ export const CATEGORY_ORDER: SectionCategory[] = [
   "Games",
   "Ratings",
   "Profile",
+  "Players",
   "Community & Posts",
   "Articles",
   "Navigation",
@@ -129,6 +131,32 @@ export const sections: Section[] = [
   { id: "streak-badge", name: "Streak Badge", category: "Profile", complexity: "atomic", source: "both", status: planned,
     description: "Current rating streak with a fire icon.",
     refs: { web: "components/user/UserStreak.tsx" } },
+
+  // --------------------------------------------------------------- Players --
+  // Built by the Player Details flow (lib/playground/flows.tsx → "player-details").
+  { id: "player-details", name: "Player Details", category: "Players", complexity: "advanced", source: "both", status: "built", flowId: "player-details",
+    description: "Full player profile — hero with headshot, name and community rating, then physical/bio, story, crowning achievements, stats, and fan takes. Web stacks with a sticky vitals sidebar; mobile tabs Profile / Stats / Takes.",
+    variants: ["web (stacked)", "mobile (tabbed)"],
+    refs: { web: "components/vault/Team/players/*", mobile: "src/views/Players/PlayerDetails.tsx" } },
+  { id: "player-hero", name: "Player Hero", category: "Players", complexity: "composite", source: "both", status: "built", flowId: "player-details",
+    description: "Detail header — headshot on a team-colour backdrop, name, nicknames, position/shoots/team, community rating circle, Rate action, and the PPG/RPG/APG headline strip." },
+  { id: "player-headshot", name: "Player Headshot", category: "Players", complexity: "atomic", source: "both", status: "built", flowId: "player-details",
+    description: "Player photo on a team-colour backdrop with an initials fallback. Rounded or circular; reused by the hero and the roster row.",
+    variants: ["rounded", "circle", "initials fallback"] },
+  { id: "player-vitals", name: "Player Vitals", category: "Players", complexity: "composite", source: "both", status: "built", flowId: "player-details",
+    description: "Physical and biographical data card — height, weight, eye colour, born, birthplace, nationality, draft, experience, status." },
+  { id: "player-story", name: "Player Story", category: "Players", complexity: "atomic", source: "both", status: "built", flowId: "player-details",
+    description: "Narrative bio — a few paragraphs of player story in editorial voice." },
+  { id: "player-achievements", name: "Player Achievements", category: "Players", complexity: "composite", source: "both", status: "built", flowId: "player-details",
+    description: "Crowning achievements grid — count, label, and years per honour, with a neutral trophy glyph (no semaphore)." },
+  { id: "player-stats", name: "Player Stats", category: "Players", complexity: "composite", source: "both", status: "built", flowId: "player-details",
+    description: "Season-by-season + career stat table (G, PTS, REB, AST, FG%, 3P%, FT%). Scrolls horizontally on narrow shells." },
+  { id: "player-takes", name: "Player Takes", category: "Players", complexity: "composite", source: "both", status: "built", flowId: "player-details",
+    description: "Community fan takes scoped to a player — avatar with rating badge, comment, tags, like/reply counts. The RateGame-native layer on the profile.",
+    refs: { web: "components/user/RatingCard.tsx", mobile: "src/components/rating-card/RatingCard.tsx" } },
+  { id: "player-list-row", name: "Player Roster Row", category: "Players", complexity: "composite", source: "both", status: "built", flowId: "player-details",
+    description: "Ranked roster entry — rank, headshot, name, position and team, jersey number, community rating circle. Opens the detail page.",
+    refs: { mobile: "src/components/voting/NumberedPlayerCard.tsx" } },
 
   // ----------------------------------------------------- Community & Posts --
   { id: "chat-message", name: "Chat Message", category: "Community & Posts", complexity: "composite", source: "both", status: planned,

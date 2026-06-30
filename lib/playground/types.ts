@@ -109,3 +109,69 @@ export interface Article {
   /** Body paragraphs for the read view. */
   body: string[];
 }
+
+/* ----------------------------------------------------------------- player -- */
+
+/** A crowning achievement, e.g. { label: "MVP", count: 4, detail: "2009, 2010, …" }. */
+export interface PlayerAchievement {
+  id: string;
+  label: string;
+  /** Times won; renders as "4×" when > 1. */
+  count?: number;
+  /** Years / context shown under the label. */
+  detail?: string;
+}
+
+/** One row of the stat table. A readable subset of the box-score columns. */
+export interface PlayerStatLine {
+  /** "2025-26", "2024-25", or "Career". */
+  season: string;
+  team?: string; // tricode for the season row
+  games: number;
+  pts: number;
+  reb: number;
+  ast: number;
+  fgPct: number; // 51.5
+  fg3Pct: number; // 31.7
+  ftPct: number; // 73.7
+}
+
+export interface Player {
+  id: string;
+  firstName: string;
+  lastName: string;
+  /** "King James", "LBJ" — shown as a sub-line under the name. */
+  nicknames: string[];
+  /** Primary position, e.g. "Small Forward". */
+  position: string;
+  /** All listed positions, when the player is multi-positional. */
+  positions?: string[];
+  shoots: string; // "Right"
+  league: League;
+  team: Team;
+  jerseyNumber: number;
+  // Physical / bio
+  heightLabel: string; // "6-9 (2.06 m)"
+  weightLabel: string; // "250 lb (113 kg)"
+  eyeColor: string; // "Brown"
+  birthDate: string; // "December 30, 1984"
+  birthPlace: string; // "Akron, Ohio"
+  country: string; // "USA"
+  experienceYears: number; // 23
+  draft: string; // "2003 · Round 1, Pick 1 (CLE)"
+  status: string; // "Active"
+  /** Headshot under /public. Falls back to initials when omitted. */
+  imageUrl?: string;
+  // Community (RateGame)
+  avgRating: number; // 0–10
+  ratingsCount: number;
+  // Headline averages (current season)
+  ppg: number;
+  rpg: number;
+  apg: number;
+  // Content
+  story: string[];
+  achievements: PlayerAchievement[];
+  seasonStats: PlayerStatLine[];
+  careerStats: PlayerStatLine;
+}

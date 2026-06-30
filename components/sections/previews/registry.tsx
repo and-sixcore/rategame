@@ -18,12 +18,21 @@ import { Avatar } from "@/components/ui/Avatar";
 import { RatingSlider } from "@/components/ui/RatingSlider";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/Tabs";
 
-import { articles } from "@/lib/playground/mockData";
+import { articles, players, takesForPlayer } from "@/lib/playground/mockData";
 import { ArticleGridCard } from "@/components/playground/articles/ArticleGridCard";
 import { ArticleFeedRow } from "@/components/playground/articles/ArticleFeedRow";
 import { ArticleReadView } from "@/components/playground/articles/ArticleReadView";
 import { ArticleCover } from "@/components/playground/articles/ArticleCover";
 import { ArticleByline, Engagement } from "@/components/playground/articles/ArticleByline";
+import { PlayerDetail } from "@/components/playground/player/PlayerDetail";
+import { PlayerHero } from "@/components/playground/player/PlayerHero";
+import { PlayerHeadshot } from "@/components/playground/player/PlayerHeadshot";
+import { PlayerVitals } from "@/components/playground/player/PlayerVitals";
+import { PlayerStory } from "@/components/playground/player/PlayerStory";
+import { PlayerAchievements } from "@/components/playground/player/PlayerAchievements";
+import { PlayerStats } from "@/components/playground/player/PlayerStats";
+import { PlayerTakes } from "@/components/playground/player/PlayerTakes";
+import { PlayerListRow } from "@/components/playground/player/PlayerListRow";
 
 /** A labelled group inside a preview. */
 function Group({ label, children }: { label: string; children: React.ReactNode }) {
@@ -269,6 +278,100 @@ function ArticleBylinePreview() {
   );
 }
 
+/* ---------------------------------------------------------------- players -- */
+/**
+ * Player previews reuse the SAME components the Player Details flow uses, on a
+ * dark product surface so they read correctly inside /system.
+ */
+const PLAYER = players.find((p) => p.id === "lebron-james") ?? players[0];
+const PLAYER_NO_IMG = { ...PLAYER, imageUrl: undefined };
+
+function PlayerDetailsPreview() {
+  return (
+    <PgSurface pad={0}>
+      <div style={{ height: 520, overflow: "auto", borderRadius: 16 }}>
+        <PlayerDetail player={PLAYER} target="web" onBack={() => {}} />
+      </div>
+    </PgSurface>
+  );
+}
+
+function PlayerHeroPreview() {
+  return (
+    <PgSurface>
+      <PlayerHero player={PLAYER} target="web" />
+    </PgSurface>
+  );
+}
+
+function PlayerHeadshotPreview() {
+  return (
+    <Group label="Rounded · circle · initials fallback">
+      <PgSurface>
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          <PlayerHeadshot player={PLAYER} size={96} radius={18} />
+          <PlayerHeadshot player={PLAYER} size={88} shape="circle" />
+          <PlayerHeadshot player={PLAYER_NO_IMG} size={88} shape="circle" />
+        </div>
+      </PgSurface>
+    </Group>
+  );
+}
+
+function PlayerVitalsPreview() {
+  return (
+    <PgSurface>
+      <div style={{ maxWidth: 420 }}>
+        <PlayerVitals player={PLAYER} target="web" />
+      </div>
+    </PgSurface>
+  );
+}
+
+function PlayerStoryPreview() {
+  return (
+    <PgSurface>
+      <PlayerStory player={PLAYER} target="web" />
+    </PgSurface>
+  );
+}
+
+function PlayerAchievementsPreview() {
+  return (
+    <PgSurface>
+      <PlayerAchievements player={PLAYER} target="web" />
+    </PgSurface>
+  );
+}
+
+function PlayerStatsPreview() {
+  return (
+    <PgSurface>
+      <PlayerStats player={PLAYER} target="web" />
+    </PgSurface>
+  );
+}
+
+function PlayerTakesPreview() {
+  return (
+    <PgSurface>
+      <PlayerTakes player={PLAYER} takes={takesForPlayer(PLAYER.id)} target="web" />
+    </PgSurface>
+  );
+}
+
+function PlayerListRowPreview() {
+  return (
+    <PgSurface>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, maxWidth: 520 }}>
+        {players.map((p) => (
+          <PlayerListRow key={p.id} player={p} target="web" onOpen={() => {}} />
+        ))}
+      </div>
+    </PgSurface>
+  );
+}
+
 export const previewRegistry: Record<string, React.ComponentType> = {
   "score-pill": ScorePillPreview,
   button: ButtonPreview,
@@ -281,4 +384,13 @@ export const previewRegistry: Record<string, React.ComponentType> = {
   "article-read-view": ArticleReadViewPreview,
   "article-cover": ArticleCoverPreview,
   "article-byline": ArticleBylinePreview,
+  "player-details": PlayerDetailsPreview,
+  "player-hero": PlayerHeroPreview,
+  "player-headshot": PlayerHeadshotPreview,
+  "player-vitals": PlayerVitalsPreview,
+  "player-story": PlayerStoryPreview,
+  "player-achievements": PlayerAchievementsPreview,
+  "player-stats": PlayerStatsPreview,
+  "player-takes": PlayerTakesPreview,
+  "player-list-row": PlayerListRowPreview,
 };

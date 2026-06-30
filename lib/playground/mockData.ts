@@ -9,6 +9,7 @@ import type {
   CommunityPost,
   Game,
   League,
+  Player,
   Profile,
   Rating,
   Team,
@@ -504,4 +505,183 @@ export const articles: Article[] = [
 
 export function getArticle(idOrSlug: string): Article | undefined {
   return articles.find((a) => a.id === idOrSlug || a.slug === idOrSlug);
+}
+
+/* ---------------------------------------------------------------- players -- */
+/**
+ * Players for the Player Details flow. Real, recognisable NBA names so the
+ * prototype reads like the product, each with a real headshot in
+ * /public/playground/players. Stats are representative; LeBron's mirror the
+ * basketball-reference reference the flow was modelled on.
+ */
+
+export const players: Player[] = [
+  {
+    id: "lebron-james",
+    firstName: "LeBron",
+    lastName: "James",
+    nicknames: ["King James", "LBJ", "The Chosen One"],
+    position: "Small Forward",
+    positions: ["Small Forward", "Power Forward", "Point Guard"],
+    shoots: "Right",
+    league: "nba",
+    team: teams.LAL,
+    jerseyNumber: 23,
+    heightLabel: "6-9 (2.06 m)",
+    weightLabel: "250 lb (113 kg)",
+    eyeColor: "Brown",
+    birthDate: "December 30, 1984",
+    birthPlace: "Akron, Ohio",
+    country: "USA",
+    experienceYears: 23,
+    draft: "2003 · Round 1, Pick 1 (CLE)",
+    status: "Active",
+    imageUrl: "/playground/players/lebron-james.webp",
+    avgRating: 9.4,
+    ratingsCount: 128400,
+    ppg: 20.9,
+    rpg: 6.1,
+    apg: 7.2,
+    story: [
+      "Drafted first overall straight out of St. Vincent-St. Mary in his hometown of Akron, LeBron James arrived with a weight of expectation no teenager should carry, and then spent two decades clearing it. Rookie of the Year at nineteen, a perennial MVP candidate by twenty-two, he turned hype into the longest sustained peak the sport has seen.",
+      "Four championships across three franchises, four Finals MVPs, and a scoring record that many believed untouchable. What sets his case apart is not any single number but the breadth of them: top five all-time in points and assists at once, a passer in a scorer's body, still anchoring a contender deep into his forties.",
+      "Now in his twenty-third season, the conversation has shifted from what he can still do to how he keeps doing it. Fans here rate him not on nostalgia but on the nights he still decides, and the score holds.",
+    ],
+    achievements: [
+      { id: "champ", label: "NBA Champion", count: 4, detail: "2012, 2013, 2016, 2020" },
+      { id: "fmvp", label: "Finals MVP", count: 4, detail: "2012, 2013, 2016, 2020" },
+      { id: "mvp", label: "Most Valuable Player", count: 4, detail: "2009, 2010, 2012, 2013" },
+      { id: "allstar", label: "All-Star", count: 22, detail: "2005 to 2026" },
+      { id: "allnba", label: "All-NBA", count: 21, detail: "13× First Team" },
+      { id: "asmvp", label: "All-Star MVP", count: 3, detail: "2006, 2008, 2018" },
+      { id: "scoring", label: "Scoring Champion", count: 1, detail: "2007-08" },
+      { id: "roy", label: "Rookie of the Year", detail: "2003-04" },
+      { id: "cup", label: "NBA Cup MVP", detail: "2024" },
+      { id: "anniv", label: "NBA 75th Anniversary Team", detail: "2021" },
+    ],
+    seasonStats: [
+      { season: "2025-26", team: "LAL", games: 60, pts: 20.9, reb: 6.1, ast: 7.2, fgPct: 51.5, fg3Pct: 31.7, ftPct: 73.7 },
+      { season: "2024-25", team: "LAL", games: 70, pts: 24.4, reb: 7.8, ast: 8.2, fgPct: 51.3, fg3Pct: 37.6, ftPct: 78.2 },
+      { season: "2023-24", team: "LAL", games: 71, pts: 25.7, reb: 7.3, ast: 8.3, fgPct: 54.0, fg3Pct: 41.0, ftPct: 75.0 },
+      { season: "2022-23", team: "LAL", games: 55, pts: 28.9, reb: 8.3, ast: 6.8, fgPct: 50.0, fg3Pct: 32.1, ftPct: 76.8 },
+    ],
+    careerStats: { season: "Career", games: 1622, pts: 26.8, reb: 7.5, ast: 7.4, fgPct: 50.7, fg3Pct: 34.8, ftPct: 73.7 },
+  },
+  {
+    id: "luka-doncic",
+    firstName: "Luka",
+    lastName: "Dončić",
+    nicknames: ["Luka Magic", "Wonder Boy"],
+    position: "Point Guard",
+    positions: ["Point Guard", "Shooting Guard"],
+    shoots: "Right",
+    league: "nba",
+    team: teams.LAL,
+    jerseyNumber: 77,
+    heightLabel: "6-7 (2.01 m)",
+    weightLabel: "230 lb (104 kg)",
+    eyeColor: "Brown",
+    birthDate: "February 28, 1999",
+    birthPlace: "Ljubljana, Slovenia",
+    country: "Slovenia",
+    experienceYears: 8,
+    draft: "2018 · Round 1, Pick 3 (ATL)",
+    status: "Active",
+    imageUrl: "/playground/players/luka-doncic.avif",
+    avgRating: 9.1,
+    ratingsCount: 86200,
+    ppg: 28.9,
+    rpg: 8.4,
+    apg: 8.1,
+    story: [
+      "A professional in Europe at sixteen and a EuroLeague champion and MVP at nineteen, Luka Dončić skipped the usual learning curve entirely. He walked into the NBA already knowing how to control a game's tempo, and he has bent it to his pace ever since.",
+      "His game is a study in unhurried craft: step-backs that buy a half-second of space, passes thrown to where teammates have not yet arrived, and a knack for the biggest shot in the loudest moment. A midseason move to Los Angeles paired him with a new supporting cast and a fresh set of expectations.",
+      "Fans rate him as a closer first. The numbers are gaudy, but it is the late-clock theatre that keeps the score high.",
+    ],
+    achievements: [
+      { id: "allnba", label: "All-NBA First Team", count: 5, detail: "2020 to 2024" },
+      { id: "allstar", label: "All-Star", count: 5, detail: "2020 to 2025" },
+      { id: "scoring", label: "Scoring Champion", detail: "2023-24" },
+      { id: "roy", label: "Rookie of the Year", detail: "2018-19" },
+      { id: "allrookie", label: "All-Rookie First Team", detail: "2019" },
+    ],
+    seasonStats: [
+      { season: "2025-26", team: "LAL", games: 58, pts: 28.9, reb: 8.4, ast: 8.1, fgPct: 47.6, fg3Pct: 36.8, ftPct: 78.4 },
+      { season: "2024-25", team: "DAL", games: 64, pts: 28.2, reb: 8.1, ast: 7.8, fgPct: 47.0, fg3Pct: 35.4, ftPct: 76.9 },
+      { season: "2023-24", team: "DAL", games: 70, pts: 33.9, reb: 9.2, ast: 9.8, fgPct: 48.7, fg3Pct: 38.2, ftPct: 78.6 },
+    ],
+    careerStats: { season: "Career", games: 480, pts: 28.6, reb: 8.7, ast: 8.3, fgPct: 47.5, fg3Pct: 35.5, ftPct: 77.4 },
+  },
+  {
+    id: "nikola-jokic",
+    firstName: "Nikola",
+    lastName: "Jokić",
+    nicknames: ["The Joker"],
+    position: "Center",
+    shoots: "Right",
+    league: "nba",
+    team: teams.DEN,
+    jerseyNumber: 15,
+    heightLabel: "6-11 (2.11 m)",
+    weightLabel: "284 lb (129 kg)",
+    eyeColor: "Blue",
+    birthDate: "February 19, 1995",
+    birthPlace: "Sombor, Serbia",
+    country: "Serbia",
+    experienceYears: 11,
+    draft: "2014 · Round 2, Pick 41 (DEN)",
+    status: "Active",
+    imageUrl: "/playground/players/nikola-jokic.webp",
+    avgRating: 9.3,
+    ratingsCount: 94800,
+    ppg: 26.4,
+    rpg: 12.5,
+    apg: 9.1,
+    story: [
+      "The forty-first pick of his draft, announced during a Taco Bell commercial, Nikola Jokić has spent his career making the basketball world recalibrate what a center is supposed to be. He does not jump high or move fast. He simply sees the floor a beat before everyone else and delivers the ball there.",
+      "Three MVPs in four years and a championship with Finals MVP to match put him at the center of the league's best offenses, a hub who turns role players into threats by sheer gravity of attention and accuracy of pass.",
+      "Among raters here he is the connoisseur's pick: not the loudest highlight, but the highest floor. The score reflects a player who almost never has a bad night.",
+    ],
+    achievements: [
+      { id: "mvp", label: "Most Valuable Player", count: 3, detail: "2021, 2022, 2024" },
+      { id: "champ", label: "NBA Champion", detail: "2023" },
+      { id: "fmvp", label: "Finals MVP", detail: "2023" },
+      { id: "allnba", label: "All-NBA First Team", count: 5, detail: "2019 to 2024" },
+      { id: "allstar", label: "All-Star", count: 7, detail: "2019 to 2026" },
+    ],
+    seasonStats: [
+      { season: "2025-26", team: "DEN", games: 62, pts: 26.4, reb: 12.5, ast: 9.1, fgPct: 57.6, fg3Pct: 35.9, ftPct: 81.8 },
+      { season: "2024-25", team: "DEN", games: 70, pts: 29.6, reb: 12.7, ast: 10.2, fgPct: 57.6, fg3Pct: 41.7, ftPct: 80.0 },
+      { season: "2023-24", team: "DEN", games: 79, pts: 26.4, reb: 12.4, ast: 9.0, fgPct: 58.3, fg3Pct: 35.9, ftPct: 81.7 },
+    ],
+    careerStats: { season: "Career", games: 738, pts: 21.4, reb: 11.0, ast: 7.1, fgPct: 55.4, fg3Pct: 35.0, ftPct: 82.6 },
+  },
+];
+
+export function getPlayer(id: string): Player | undefined {
+  return players.find((p) => p.id === id);
+}
+
+/**
+ * Community takes about a player, keyed by player id. Reuses the Rating shape;
+ * gameId points at a recent game the take came out of. Drives the Takes section.
+ */
+export const playerTakes: Record<string, Rating[]> = {
+  "lebron-james": [
+    { id: "lt1", user: users.ilco, score: 9.6, comment: "Twenty-three seasons in and he still dictates the fourth quarter. The longevity alone is unrateable, but the floor game tonight earns it.", likes: 421, replies: 33, timeAgo: "2h", category: "Watched", tags: ["Longevity", "Closer"], gameId: "g2" },
+    { id: "lt2", user: users.deej, score: 9.0, comment: "People forget he is the engine, not the passenger. Eleven assists, zero panic.", likes: 188, replies: 12, timeAgo: "5h", category: "Watched", tags: ["Playmaking"], gameId: "g2" },
+    { id: "lt3", user: users.santi, score: 8.4, comment: "Knocking a touch off for the cold stretch in the third, but the close was vintage.", likes: 64, replies: 7, timeAgo: "1d", category: "Highlights", tags: [], gameId: "g2" },
+  ],
+  "luka-doncic": [
+    { id: "kt1", user: users.nova, score: 9.3, comment: "The step-back is unfair. He gets to his spot whenever he wants and the clock means nothing to him.", likes: 276, replies: 19, timeAgo: "3h", category: "Watched", tags: ["Clutch"], gameId: "g2" },
+    { id: "kt2", user: users.mara, score: 8.8, comment: "Triple-double watch every single night. The rebounding from a guard is the quiet superpower.", likes: 132, replies: 8, timeAgo: "6h", category: "Watched", tags: ["Versatile"], gameId: "g2" },
+  ],
+  "nikola-jokic": [
+    { id: "jt1", user: users.kw, score: 9.5, comment: "Best passer in the league and he plays center. Every cut gets rewarded, every defender gets read.", likes: 312, replies: 24, timeAgo: "4h", category: "Watched", tags: ["Playmaking", "IQ"], gameId: "g3" },
+    { id: "jt2", user: users.ilco, score: 9.1, comment: "No wasted motion. He never looks rushed and the box score is absurd by the fourth.", likes: 154, replies: 9, timeAgo: "1d", category: "Watched", tags: [], gameId: "g3" },
+  ],
+};
+
+export function takesForPlayer(playerId: string): Rating[] {
+  return playerTakes[playerId] ?? [];
 }

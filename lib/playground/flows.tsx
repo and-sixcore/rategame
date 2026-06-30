@@ -6,6 +6,7 @@ import { ratings } from "./mockData";
 import { Avatar } from "@/components/playground/ui/Avatar";
 import { RatingCircle } from "@/components/playground/ui/RatingCircle";
 import { ArticlesFlow } from "@/components/playground/articles/ArticlesFlow";
+import { PlayerDetailsFlow } from "@/components/playground/player/PlayerDetailsFlow";
 
 /**
  * The playground is a prototype zone. A "flow" is a piece of UI (a flow, a
@@ -71,6 +72,7 @@ export const flows: Flow[] = [
   { id: "empty", label: "Empty shell", group: "—", platforms: ["mobile", "web"], render: () => null },
   { id: "articles-grid", label: "Articles · Var A (grid)", group: "Articles", platforms: ["mobile", "web"], render: (c) => <ArticlesFlow target={c.target} variant="grid" /> },
   { id: "articles-feed", label: "Articles · Var B (feed)", group: "Articles", platforms: ["mobile", "web"], render: (c) => <ArticlesFlow target={c.target} variant="feed" /> },
+  { id: "player-details", label: "Player · details", group: "Players", platforms: ["mobile", "web"], render: (c) => <PlayerDetailsFlow target={c.target} /> },
   { id: "sample-ratings", label: "Sample · ratings", group: "Samples", platforms: ["mobile", "web"], render: (c) => <SampleRatings target={c.target} /> },
 ];
 
